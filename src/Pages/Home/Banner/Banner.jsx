@@ -14,8 +14,8 @@ const Banner = () => {
                         <h1 className='text-5xl'>Affordable<br /> Price For Car<br /> Servicing</h1>
                         <p className='text-xl'>There are many variations of passages of  available, but the <br />majority have suffered alteration in some form</p>
                         <div className='mt-4 flex'>
-                            <button className="btn btn-error mr-4 w-36">Error</button>
-                            <button className="btn btn-outline btn-error w-36">Error</button>
+                            <button className="btn btn-error mr-4 w-40">Discover More</button>
+                            <button className="btn btn-outline btn-warning w-40">Latest Projects</button>
                         </div>
                     </div>
                 </div>
