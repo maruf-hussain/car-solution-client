@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import img from '../../assets/images/login/login.svg'
+import img from '../../assets/images/login/vecteezy_man-using-laptop-user-is-logging-in-with-a-username-and_28045141_321.png'
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
@@ -33,7 +33,7 @@ const Login = () => {
 return (
   <div className="hero min-h-screen bg-base-200">
     <div className="hero-content flex-col lg:flex-row">
-      <div className="mr-20 w-1/2">
+      <div className="mr-20 w-1/3 ">
 
         <img src={img} alt="" />
       </div>

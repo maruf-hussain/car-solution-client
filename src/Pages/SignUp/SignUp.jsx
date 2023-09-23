@@ -16,6 +16,10 @@ const SignUp = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
+        if(password.length < 8){
+            setError('Please Password atleast 8 character')
+            return;
+        }
         console.log(name, email, password);
         createUser(email, password)
             .then(result => {
