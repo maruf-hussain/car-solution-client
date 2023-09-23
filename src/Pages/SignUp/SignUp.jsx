@@ -6,6 +6,7 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const SignUp = () => {
     const { createUser } = useContext(AuthContext);
+    const {emailVarify} = useContext(AuthContext);
     const [succes, setSucces] = useState();
     const [error, setError] = useState();
 
@@ -28,13 +29,19 @@ const SignUp = () => {
                 setSucces('User Created Succesfully');
                 setError('');
                 form.reset();
+                emailVarify(user)
+                .then(result => {
+                  console.log(result)
+                  alert('Please varify Your Email')
+                })
+      
             })
             .catch(error =>{  
                 setError(error.message);
                 setSucces('');
             });
 
-            
+        
 
     }
     return (
