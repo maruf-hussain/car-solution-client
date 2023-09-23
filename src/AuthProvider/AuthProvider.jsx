@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import app from "../Firebase/Firebase.Config";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -25,6 +25,12 @@ const AuthProvider = ({ children }) => {
     const emailVarify = (user) =>{
         return sendEmailVerification(user);
     }
+
+    // Password Reset or Forgate Password........................
+    const resetPassword = (email) => {
+        sendPasswordResetEmail(auth , email);
+       
+    }
     // Obserb....................................................
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -45,6 +51,7 @@ const AuthProvider = ({ children }) => {
         createUser,
         signIn,
         emailVarify,
+        resetPassword,
     }
 
     return (
