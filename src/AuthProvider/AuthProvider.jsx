@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import app from "../Firebase/Firebase.Config";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -19,6 +19,11 @@ const AuthProvider = ({ children }) => {
     const signIn = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password);
+    }
+    // Log out..................................................
+    const logOut = () =>{
+        setLoading(true)
+        return signOut(auth)
     }
 
     // Email Varification.......................................
@@ -52,6 +57,7 @@ const AuthProvider = ({ children }) => {
         signIn,
         emailVarify,
         resetPassword,
+        logOut,
     }
 
     return (
