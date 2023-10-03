@@ -22,32 +22,57 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
     // Sign in with Google.....................................
-    const googleSignIn = () =>{
+    const googleSignIn = () => {
         setLoading(true)
         return signInWithPopup(auth, googleProvider);
     }
     // Log out..................................................
-    const logOut = () =>{
+    const logOut = () => {
         setLoading(true)
-        return signOut(auth)
+        return signOut(auth);
     }
 
     // Email Varification.......................................
-    const emailVarify = (user) =>{
+    const emailVarify = (user) => {
         return sendEmailVerification(user);
     }
 
     // Password Reset or Forgate Password........................
     const resetPassword = (email) => {
-        sendPasswordResetEmail(auth , email);
-       
+        sendPasswordResetEmail(auth, email);
+
     }
     // Obserb....................................................
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            setLoading(false)
-        })
+            setLoading(false);
+
+           
+               
+                if(currentUser && currentUser.email){
+                    const loggedUser = {
+                        email: currentUser.email
+                    }
+                    fetch('https://car-solution-server-r58db1bh3-maruf-hussain.vercel.app/jwt', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(loggedUser)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data)
+                            localStorage.setItem('car-token', data.token);
+                        })
+             }
+             else{
+                localStorage.removeItem('car-token')
+             }
+               
+
+    });
         return () => {
             return unsubscribe();
         }

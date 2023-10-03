@@ -22,7 +22,7 @@ const BookNow = () => {
             price: price
         }
         console.log(booking);
-        fetch('http://localhost:7000/bookings', {
+        fetch('https://car-solution-server-r58db1bh3-maruf-hussain.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

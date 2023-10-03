@@ -7,7 +7,9 @@ const Bookings = () => {
     const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([])
     const navigate = useNavigate();
-    const url = `http://localhost:7000/bookings?email=${user?.email}`
+
+    const url = `https://car-solution-server-r58db1bh3-maruf-hussain.vercel.app/bookings?email=${user?.email}`;
+
     useEffect(() => {
         fetch(url, {
             method: 'GET',
@@ -21,7 +23,7 @@ const Bookings = () => {
                     setBookings(data)
                 }
                 else{
-                  navigate('/')
+                  navigate('/');
                 }
             })
                 
@@ -30,7 +32,7 @@ const Bookings = () => {
     const handleDelete = id => {
         const proceed = confirm('Are You Sure Delete This Item')
         if (proceed) {
-            fetch(`http://localhost:7000/bookings/${id}`, {
+            fetch(`https://car-solution-server-r58db1bh3-maruf-hussain.vercel.app/bookings/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -46,7 +48,7 @@ const Bookings = () => {
     };
 
     const handleUpdateConfirm = id => {
-        fetch(`http://localhost:7000/bookings/${id}`, {
+        fetch(`https://car-solution-server-r58db1bh3-maruf-hussain.vercel.app/bookings/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application.json'
