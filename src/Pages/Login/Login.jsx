@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/images/login/vecteezy_man-using-laptop-user-is-logging-in-with-a-username-and_28045141_321.png'
 import { useContext, useRef, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 
 const Login = () => {
@@ -96,6 +97,7 @@ const Login = () => {
             <p className='my-4 text-center'>New To Car Mechanic <Link className='text-red-500 font-bold' to="/signup">Sign Up</Link></p>
             <p className='text-success text-center font-semibold '>{succes}</p>
             <p className='text-error text-center font-semibold'>{error}</p>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>
