@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path:'booknow/:id',
-        element:<BookNow></BookNow>,
+        element:<PrivateRoute><BookNow></BookNow></PrivateRoute>,
         loader:({params})=> fetch(`http://localhost:7000/services/${params.id}`)
       },
       {

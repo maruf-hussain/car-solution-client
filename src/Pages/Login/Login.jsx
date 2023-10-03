@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/images/login/vecteezy_man-using-laptop-user-is-logging-in-with-a-username-and_28045141_321.png'
 import { useContext, useRef, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
@@ -10,6 +10,10 @@ const Login = () => {
   const [succes, setSucces] = useState();
   const [error, setError] = useState();
   const emailRef = useRef()
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const from = location.state?.from?.pathname || '/'
 
   const handleLogin = event => {
     event.preventDefault();
@@ -21,7 +25,24 @@ const Login = () => {
     signIn(email, password)
       .then(result => {
         const user = result.user;
-        console.log(user);
+        const loggedUser = {
+          email: user.email
+        }
+        console.log(loggedUser);
+     
+        fetch('http://localhost:7000/jwt', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(loggedUser)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          localStorage.setItem('car-token', data.token);
+             navigate(from, {replace: true})
+        })
         setSucces('Login is Succesfully.....')
         setError('');
         form.reset();
