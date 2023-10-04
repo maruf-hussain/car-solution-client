@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
                     const loggedUser = {
                         email: currentUser.email
                     }
-                    fetch('https://car-solution-server-r58db1bh3-maruf-hussain.vercel.app/jwt', {
+                    fetch('http://localhost:7000/jwt', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
