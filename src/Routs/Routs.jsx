@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       {
         path:'booknow/:id',
         element:<PrivateRoute><BookNow></BookNow></PrivateRoute>,
-        loader:({params})=> fetch(`http://localhost:7000/services/${params.id}`)
+        loader:({params})=> fetch(`https://car-solution-server-8i7iupbny-maruf-hussain.vercel.app/services/${params.id}`)
       },
       {
         path:'bookings',
